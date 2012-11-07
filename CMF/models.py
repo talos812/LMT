@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 class Organization(models.Model):
     name  = models.CharField(max_length=20)
     admin = models.ForeignKey(User, related_name="+")
+    def __unicode__(self):
+        return self.name
     
 
 class MoneyUser(models.Model):
@@ -13,13 +15,18 @@ class MoneyUser(models.Model):
     money = models.DecimalField(max_digits=6, decimal_places=2)
     owner = models.OneToOneField(User)
     organization = models.ManyToManyField(Organization, related_name="moneyusers")
+    def __unicode__(self):
+        return "%s has %f"%(self.owner,self.money)
 
 class Request(models.Model):
     from_user = models.ForeignKey(User, related_name="+")
-    to_from_user = models.ForeignKey(User, related_name="+")
+    to_user = models.ForeignKey(User, related_name="+")
+    money = models.DecimalField(max_digits=6, decimal_places=2)
     is_accept = models.BooleanField()
     is_fill   = models.BooleanField()
     request_date = models.DateTimeField()
-    accept_date  = models.DateTimeField()
+    def __unicode__(self):
+        return "%s give %s money:%f"%(self.from_user,self.to_user, self.money)
+#    accept_date  = models.DateTimeField(null=True)
     
     
