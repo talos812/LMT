@@ -1,8 +1,5 @@
 from django.conf.urls import patterns, include, url
-from CMF import urls as cmf_urls
-# Uncomment the next two lines to enable the admin:
-from django.contrib import admin
-admin.autodiscover()
+from CMF.views import MoneyDetail
 
 urlpatterns = patterns('',
     # Examples:
@@ -13,6 +10,5 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^cmf/',include(cmf_urls))
+    url(r'^money_detail/(?P<pk>[\d-]+)/$', MoneyDetail.as_view()),
 )
