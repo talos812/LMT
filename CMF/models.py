@@ -24,7 +24,8 @@ class Request(models.Model):
     money = models.DecimalField(max_digits=6, decimal_places=2)
     is_accept = models.BooleanField()
     is_fill   = models.BooleanField()
-    request_date = models.DateTimeField()
+    reason    = models.TextField(null=True,blank=True)
+    request_date = models.DateTimeField(auto_now=True)
     def __unicode__(self):
         return "%s give %s money:%f"%(self.from_user,self.to_user, self.money)
 #    accept_date  = models.DateTimeField(null=True)

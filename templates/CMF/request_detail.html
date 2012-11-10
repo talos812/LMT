@@ -1,0 +1,13 @@
+{% extends "cmf/base.html" %}
+
+{% block title %}{{ block.super }}: request - {% endblock %}
+
+
+{% block body %}
+
+{{request.from_user}}
+{{request.to_user}}
+{{request.money}}
+{{request.is_fill}}
+{{request.request_date}}
+{% endblock %}

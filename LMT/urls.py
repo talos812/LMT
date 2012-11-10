@@ -2,6 +2,7 @@ from django.conf.urls import patterns, include, url
 from CMF import urls as cmf_urls
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+from django.contrib.auth.views import login
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -14,5 +15,6 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^cmf/',include(cmf_urls))
+    url(r'^cmf/',include(cmf_urls)),
+    url(r'^login/$',login),
 )

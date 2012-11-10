@@ -1,0 +1,11 @@
+{% extends "CMF/base.html" %}
+
+{% block body %}
+{% load url from future %}
+<h2>Welcome to cmf</h2>
+<p>The <a href="{% url "money_detail" money.pk%}">your money</a></p>
+<p><a href="{% url "request_detail" %}">history</a></p>
+<p><a href="{% url "request_create" %}">create request</a></p>
+<p><a href="{% url "be_request_list" %}">be accept</a></p>
+{% endblock %}
+
