@@ -4,10 +4,19 @@
 
 
 {% block body %}
-
+{% if request.is_accept %}
 {{request.from_user}}
 {{request.to_user}}
 {{request.money}}
 {{request.is_fill}}
 {{request.request_date}}
+{% else %}
+<form action="." method="POST">
+  {% csrf_token %}
+  <table>
+    {{ form.as_table }}
+  </table>
+  <input type="submit" value="Submit"/>
+</form>
+{% endif %}
 {% endblock %}

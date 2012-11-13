@@ -1,6 +1,8 @@
 # Create your views here.
 from django.views.generic import ListView, DetailView, TemplateView, CreateView
+from django.views.generic.edit import UpdateView
 from CMF.models import Organization, MoneyUser, Request
+
 from CMF.forms import RequestForm
 import datetime
 class MoneyDetail(DetailView):
@@ -19,11 +21,13 @@ class Home(TemplateView):
         })
         return data
     
-class RequestDetail(DetailView):
+class RequestDetail(UpdateView):
     model = Request
+    form_class = RequestForm
     context_object_name = "request"
     template_name = "CMF/request_detail.html"
-    
+    success_url = "/cmf/home/"
+ 
 class History(ListView):
     model = Request
     context_object_name = "request_list"
