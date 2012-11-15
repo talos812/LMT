@@ -1,7 +1,9 @@
+#-*- coding:utf-8
 # Create your views here.
 from django.views.generic import ListView, DetailView, TemplateView, CreateView
 from django.views.generic.edit import UpdateView
 from CMF.models import Organization, MoneyUser, Request
+from django.db.models import Q
 
 from CMF.forms import RequestForm
 import datetime
@@ -48,7 +50,13 @@ class History(ListView):
     model = Request
     context_object_name = "request_list"
     template_name = "CMF/request_list.html"
-    
+    def get_queryset(self):
+#历史只列出与自己有关的入账记录
+        request_list = Request.objects.filter(
+                                              Q(to_user = self.request.user) | 
+                                              Q(from_user = self.request.user) ).filter(
+                                              is_accept = True )
+        return request_list
     def get_context_data(self, **kwargs):
         money = MoneyUser.objects.get(owner=self.request.user)
         data = super(History, self).get_context_data(**kwargs)
