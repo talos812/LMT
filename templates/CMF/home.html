@@ -2,10 +2,19 @@
 
 {% block body %}
 {% load url from future %}
-<h2>Welcome to cmf</h2>
-<p>The <a href="{% url "money_detail" money.pk%}">your money</a></p>
-<p><a href="{% url "request_detail" %}">history</a></p>
-<p><a href="{% url "request_create" %}">create request</a></p>
-<p><a href="{% url "be_request_list" %}">be accept</a></p>
+<TABLE>
+    <TR>
+		<td><h2>Welcome to cmf</h2></td>
+	</TR>
+	<tr>
+		<td><p>The <a href="{% url 'money_detail' money.pk%}">your money</a></p>
+<p><a href="{% url 'request_detail' %}">history</a></p>
+<p><a href="{% url 'request_create' %}">create request</a></p>
+<p><a href="{% url 'be_request_list' %}">be accept</a></p></td>
+		<td>{% block inframe %}{% endblock %}</td>
+	</tr>
+</TABLE>
+
+
 {% endblock %}
 
