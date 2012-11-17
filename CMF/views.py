@@ -46,6 +46,19 @@ class RequestDetail(UpdateView):
             'money': money,
         })
         return data 
+    def get_success_url(self):
+        url = super(RequestDetail, self).get_success_url()
+        request = self.get_object()
+        if request.is_accept:
+            money_from = MoneyUser.objects.get(owner=request.from_user)
+            money_to   = MoneyUser.objects.get(owner=request.to_user)
+            money_from.money -= request.money
+            money_to.money   += request.money
+            money_from.save()
+            money_to.save()            
+        
+        return url
+        
 class History(ListView):
     model = Request
     context_object_name = "request_list"
@@ -96,3 +109,4 @@ class BeAcceptList(ListView):
             'money': money,
         })
         return data 
+    
