@@ -4,6 +4,8 @@ from CMF import urls as cmf_urls
 from django.contrib import admin
 from django.contrib.auth.views import login
 from CMF.views import logout_view
+from CMF.views import Home
+from django.contrib.auth.decorators import login_required
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -19,4 +21,5 @@ urlpatterns = patterns('',
     url(r'^cmf/',include(cmf_urls)),
     url(r'^login/$',login),
     url(r'^logout/$',logout_view),
+    url(r'^$',login_required(Home.as_view(), redirect_field_name="next", login_url='/login/'),name="home"),
 )
