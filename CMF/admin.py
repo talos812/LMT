@@ -6,7 +6,7 @@ class OrganizationAdmin(admin.ModelAdmin):
 class MoneyUserAdmin(admin.ModelAdmin):
     list_display = ('money', 'owner')
 class RequestAdmin(admin.ModelAdmin):
-    list_display = ('from_user', 'to_user', 'money', 'is_accept', 
+    list_display = ('from_user', 'to_user', 'money', 'is_accept', 'reason',
                     'request_date')
 admin.site.register(Organization,OrganizationAdmin)
 admin.site.register(MoneyUser,MoneyUserAdmin)

@@ -7,7 +7,7 @@
 <h1>History</h1>
 <ul>
   {% for request in request_list %}
-    <li><a href="{% url "request_detail" request.id %}">{{ request.from_user }} to {{ request.to_user }} {{request.money}}</a></li>
+    <li><a href="{% url "request_detail" request.id %}">{{ request.from_user }} to {{ request.to_user }} {{request.money}} {{request.reason}}</a></li>
   {% endfor %}
 </ul>
 {% endblock %}
