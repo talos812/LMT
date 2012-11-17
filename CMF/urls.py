@@ -20,4 +20,5 @@ urlpatterns = patterns('',
     url(r'^money_list/$',login_required(MoneyList.as_view(), redirect_field_name="next", login_url='/login/'), name="money_list"),
     url(r'^accept_suc/$',direct_to_template,{'template':'CMF/accept_suc.html'}),
     url(r'^accept_fail/$',direct_to_template,{'template':'CMF/accept_fail.html'}),
+    url(r'^help/$',direct_to_template,{'template':'CMF/help.html'},name="help"),
 )
