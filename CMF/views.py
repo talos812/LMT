@@ -5,7 +5,7 @@ from django.views.generic.edit import UpdateView
 from CMF.models import Organization, MoneyUser, Request
 from django.db.models import Q
 
-from CMF.forms import RequestForm
+from CMF.forms import RequestForm,AcceptForm
 import datetime
 class MoneyDetail(DetailView):
     model = MoneyUser
@@ -33,7 +33,7 @@ class Home(TemplateView):
     
 class RequestDetail(UpdateView):
     model = Request
-    form_class = RequestForm
+    form_class = AcceptForm
     context_object_name = "request"
     template_name = "CMF/request_detail.html"
     success_url = "/cmf/home/"
@@ -85,7 +85,7 @@ class BeAcceptList(ListView):
     context_object_name = "request_list"
     template_name = "CMF/request_list.html"
     def get_queryset(self):
-        request_list = Request.objects.filter(to_user= self.request.user)
+        request_list = Request.objects.filter(from_user= self.request.user).filter(is_accept=False)
         return request_list
     
     def get_context_data(self, **kwargs):

@@ -4,12 +4,12 @@
 
 
 {% block inframe %}
-{% if request.is_accept %}
 {{request.from_user}}
 {{request.to_user}}
 {{request.money}}
 {{request.is_fill}}
 {{request.request_date}}
+{% if request.is_accept %}
 {% else %}
 <form action="." method="POST">
   {% csrf_token %}

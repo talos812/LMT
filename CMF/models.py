@@ -21,7 +21,7 @@ class MoneyUser(models.Model):
 class Request(models.Model):
     from_user = models.ForeignKey(User, related_name="+")
     to_user = models.ForeignKey(User, related_name="+")
-    money = models.DecimalField(max_digits=6, decimal_places=2)
+    money = models.PositiveIntegerField()
     is_accept = models.BooleanField()
     is_fill   = models.BooleanField()
     reason    = models.TextField(null=True,blank=True)
