@@ -3,6 +3,7 @@ from CMF import urls as cmf_urls
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 from django.contrib.auth.views import login
+from CMF.views import logout_view
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -17,4 +18,5 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^cmf/',include(cmf_urls)),
     url(r'^login/$',login),
+    url(r'^logout/$',logout_view),
 )

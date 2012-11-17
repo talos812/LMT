@@ -4,9 +4,17 @@ from django.views.generic import ListView, DetailView, TemplateView, CreateView
 from django.views.generic.edit import UpdateView
 from CMF.models import Organization, MoneyUser, Request
 from django.db.models import Q
-
+from django.views.generic.simple import direct_to_template
 from CMF.forms import RequestForm,AcceptForm
 import datetime
+
+from django.contrib.auth import logout
+
+def logout_view(request):
+    logout(request)
+    return direct_to_template(request, template="registration/logout.html")
+
+
 class MoneyDetail(DetailView):
     model = MoneyUser
     context_object_name = "money_object"
