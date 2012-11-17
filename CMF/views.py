@@ -14,7 +14,19 @@ def logout_view(request):
     logout(request)
     return direct_to_template(request, template="registration/logout.html")
 
+class MoneyList(ListView):
+    model = MoneyUser
+    context_object_name = "money_list"
+    template_name = "CMF/money_list.html"
 
+    def get_context_data(self, **kwargs):
+        money = MoneyUser.objects.get(owner=self.request.user)
+        data = super(MoneyList, self).get_context_data(**kwargs)
+        data.update({
+            'user':self.request.user,
+            'money': money,
+        })
+        return data 
 class MoneyDetail(DetailView):
     model = MoneyUser
     context_object_name = "money_object"
@@ -44,7 +56,7 @@ class RequestDetail(UpdateView):
     form_class = AcceptForm
     context_object_name = "request"
     template_name = "CMF/request_detail.html"
-    success_url = "/cmf/home/"
+    success_url = "/cmf/accept_suc/"
     
     def get_context_data(self, **kwargs):
         money = MoneyUser.objects.get(owner=self.request.user)

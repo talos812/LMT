@@ -1,0 +1,13 @@
+{% extends "CMF/home.html" %}
+
+{% block title %}{{ block.super }}: Topics{% endblock %}
+
+{% block inframe %}
+{% load url from future %}
+<h1>all the user</h1>
+<ul>
+  {% for money in money_list %}
+    <li>{{money.owner}}:{{money.money}}</li>
+  {% endfor %}
+</ul>
+{% endblock %}

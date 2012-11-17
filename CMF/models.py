@@ -23,7 +23,7 @@ class Request(models.Model):
     to_user = models.ForeignKey(User, related_name="+")
     money = models.PositiveIntegerField()
     is_accept = models.BooleanField()
-    is_fill   = models.BooleanField()
+#    is_fill   = models.BooleanField()
     reason    = models.TextField(null=True,blank=True)
     request_date = models.DateTimeField(auto_now=True)
     def __unicode__(self):
